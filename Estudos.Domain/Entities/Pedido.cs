@@ -26,8 +26,17 @@ namespace Estudos.Domain.Entities
 
         public override void Validate()
         {
+            LimparMessageValidacao();
             if (!ItensPedidos.Any())
-                MessageValicao.Add("Alerta! Pedido não pode ficar sem item de pedido");
+            {
+                AddCriticas("Alerta! Pedido não pode ficar sem item de pedido");
+            }
+            if (string.IsNullOrEmpty(CEP))
+            {
+                AddCriticas("Alerta! CEP não pode ser em branco");
+            }
+               
+            
           
         }
     }

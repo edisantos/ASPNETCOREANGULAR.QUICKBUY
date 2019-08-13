@@ -13,8 +13,18 @@ namespace Estudos.Domain.Entities
         /// <summary>
         /// ESTA ESTANCIA DE USUÁRIOS PODE TER 0 OU MUITOS PEDIDOS
         /// </summary>
-        public ICollection<Produto> Produtos { get; set; }
+        public ICollection<Pedido> Pedidos { get; set; }
 
-
+        public override void Validate()
+        {
+            if (string.IsNullOrEmpty(Email))
+            {
+                AddCriticas("E-mail não informada");
+            }
+            if (string.IsNullOrEmpty(Senha))
+            {
+                AddCriticas("Senha não informada");
+            }
+        }
     }
 }

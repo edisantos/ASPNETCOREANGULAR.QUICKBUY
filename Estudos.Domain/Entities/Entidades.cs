@@ -7,18 +7,22 @@ namespace Estudos.Domain.Entities
     {
         public List<string> _messageValidacao { get; set; }
 
-        public  List<string> MessageValicao
+        private  List<string> MessageValidacao
         {
             get { return _messageValidacao ?? (_messageValidacao = new List<string>()); }
         }
         protected void LimparMessageValidacao()
         {
-            MessageValicao.Clear();
+            MessageValidacao.Clear();
+        }
+        protected void AddCriticas(string mensagem)
+        {
+            MessageValidacao.Add(mensagem);
         }
         public abstract void Validate();
         protected bool EhValido
         {
-            get { return !MessageValicao.Any(); }
+            get { return !MessageValidacao.Any(); }
             
         }
     }

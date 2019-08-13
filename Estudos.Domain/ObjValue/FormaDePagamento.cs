@@ -25,5 +25,10 @@ namespace Estudos.Domain.ObjValue
         {
             get { return Id == (int)TipoFormaPagamentoEnum.NaoDefinido; }
         }
+
+        public override void Validate()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -7,5 +7,9 @@
         public string Descricao { get; set; }
         public decimal Preco { get; set; }
 
+        public override void Validate()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
