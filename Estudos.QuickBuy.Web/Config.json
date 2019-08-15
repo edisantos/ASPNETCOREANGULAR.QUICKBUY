@@ -1,0 +1,7 @@
+{
+
+  "connectionStrings": {
+    "SqlConnection": "Data Source=DESKTOP-1Q2TUU2\\LEMOSDATABASE;Initial Catalog=DdQuickBuy;Integrated Security=True"
+  }
+}
+
