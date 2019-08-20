@@ -9,7 +9,40 @@ namespace Estudos.QuickBuy.Respository.EntityConfig
     {
         public void Configure(EntityTypeBuilder<Pedido> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("Pedido");
+            builder.HasKey(p => p.Id);
+            builder.Property(p => p.DataPedido)
+                .HasColumnType("datetime")
+                .IsRequired();
+            builder.Property(p => p.DataPrevisaoEntrega)
+                .IsRequired()
+                .HasColumnType("datetime");
+
+            builder.Property(p => p.CEP)
+                .IsRequired()
+                .HasColumnType("varchar")
+                .HasMaxLength(10);
+
+            builder.Property(p => p.Cidade)
+                .IsRequired()
+                .HasColumnType("varchar")
+                .HasMaxLength(50);
+
+            builder.Property(p => p.Estado)
+                .IsRequired()
+                .HasColumnType("varchar")
+                .HasMaxLength(2);
+
+            builder.Property(p => p.EndecoCompleto)
+                .IsRequired()
+                .HasColumnType("varchar")
+                .HasMaxLength(50);
+
+            builder.Property(p => p.NumeroEndeco)
+                .IsRequired()
+                .HasColumnType("int");
+
+            
         }
     }
 }

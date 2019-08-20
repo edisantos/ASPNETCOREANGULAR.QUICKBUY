@@ -9,7 +9,17 @@ namespace Estudos.QuickBuy.Respository.EntityConfig
     {
         public void Configure(EntityTypeBuilder<FormaDePagamento> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("FormaDePagamento");
+            builder.HasKey(f => f.Id);
+            builder.Property(p => p.Nome)
+                .HasColumnType("varchar")
+                .HasMaxLength(50)
+                .IsRequired();
+
+            builder.Property(p => p.Descricao)
+                .HasColumnType("varchar")
+                .HasMaxLength(50)
+                .IsRequired();
         }
     }
 }

@@ -5,11 +5,12 @@ using System.Linq;
 
 namespace Estudos.Domain.Entities
 {
-    public class Pedido:Entidades
+    public class Pedido : Entidades
     {
         public int Id { get; set; }
         public DateTime DataPedido { get; set; }
         public int UsuarioId { get; set; }
+        public virtual Usuarios Usuarios{get;set;}//Estancia Usuário
         public DateTime DataPrevisaoEntrega { get; set; }
         public string CEP { get; set; }
         public string Cidade { get; set; }

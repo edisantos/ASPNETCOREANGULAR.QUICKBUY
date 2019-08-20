@@ -13,7 +13,7 @@ namespace Estudos.Domain.Entities
         /// <summary>
         /// ESTA ESTANCIA DE USUÁRIOS PODE TER 0 OU MUITOS PEDIDOS
         /// </summary>
-        public ICollection<Pedido> Pedidos { get; set; }
+        public virtual ICollection<Pedido> Pedidos { get; set; }
 
         public override void Validate()
         {

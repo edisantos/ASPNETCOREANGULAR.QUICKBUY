@@ -10,7 +10,32 @@ namespace Estudos.QuickBuy.Respository.EntityConfig
        
         public void Configure(EntityTypeBuilder<Usuarios> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("Usuarios");
+            builder.HasKey(u => u.Id);
+            builder.Property(p => p.Email)
+                .HasMaxLength(50)
+                .IsRequired()
+                .HasColumnType("varchar");
+
+            builder.Property(p => p.Senha)
+               .HasMaxLength(400)
+               .IsRequired()
+               .HasColumnType("varchar");
+
+            builder.Property(p => p.Nome)
+               .HasMaxLength(50)
+               .IsRequired()
+               .HasColumnType("varchar");
+
+            builder.Property(p => p.SobreNome)
+              .HasMaxLength(50)
+              .IsRequired()
+              .HasColumnType("varchar");
+
+            //builder.Property(p => p.Pedidos);
+            builder.HasMany(p => p.Pedidos)
+                .WithOne(p => p.Usuarios);
+                
         }
     }
 }

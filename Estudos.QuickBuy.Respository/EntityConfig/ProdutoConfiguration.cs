@@ -9,7 +9,23 @@ namespace Estudos.QuickBuy.Respository.EntityConfig
     {
         public void Configure(EntityTypeBuilder<Produto> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("Produto");
+            builder.HasKey(p => p.Id);
+
+            builder.Property(p => p.Nome)
+                .HasColumnType("varchar")
+                .IsRequired()
+                .HasMaxLength(50);
+
+            builder.Property(p => p.Descricao)
+               .HasColumnType("varchar")
+               .IsRequired()
+               .HasMaxLength(100);
+
+            builder.Property(p => p.Preco)
+               .HasColumnType("decimal")
+               .IsRequired();
+               
         }
     }
 }
