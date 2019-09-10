@@ -1,9 +1,7 @@
 using Estudos.QuickBuy.Respository.Contexto;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,23 +10,23 @@ namespace Estudos.QuickBuy.Web
 {
     public class Startup
     {
+       
+
+        public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration)
         {
             var builder = new ConfigurationBuilder();
-            builder.AddJsonFile("Config.json",optional:false,reloadOnChange:true);
-            Configuration = configuration;
+            builder.AddJsonFile("Config.json", optional: false, reloadOnChange: true);
+            Configuration = builder.Build();
         }
-
-        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            var connectionString = Configuration.GetConnectionString("SqlConnection");
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<QuickBuyContexto>(option=>
             option.UseLazyLoadingProxies()
-            .UseSqlServer(connectionString,m=>m.MigrationsAssembly("Estudo.QuickBuy.Repository")));
+            .UseSqlServer(connectionString,m=>m.MigrationsAssembly("Estudos.QuickBuy.Respository")));
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -70,7 +68,9 @@ namespace Estudos.QuickBuy.Web
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
+                    /// spa.UseAngularCliServer(npmScript: "start");]
+                    /// 
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
                 }
             });
         }
